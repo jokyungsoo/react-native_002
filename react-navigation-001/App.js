@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-
+import { BottomTabBar, BottomTabView, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import source
+import { TabA } from './src/nav_tab/TabA';
 
 const Stack = createNativeStackNavigator();
 
 export default function APP() {
-    return(
-
+    return (
+        <NavigationContainer>
+            <BottomTab.Navigator>
+                <BottomTab.Screen name={'TabA'} component={TabA}></BottomTab.Screen>
+            </BottomTab.Navigator>
+        </NavigationContainer>
     );
 }
 
