@@ -5,7 +5,7 @@ class ScreenB extends React.Component {
     render() {
         return (
             <View style={styles.main_view}>
-                <Text>Screen B 화면입니다. 받은 값 : {this.props.route.params.value} </Text>
+                <Text>Screen B 화면입니다. 받은 값 : {/*{this.props.route.params.value}*/} </Text>
                 <Button
                     title="backspace"
                     onPress={() => {

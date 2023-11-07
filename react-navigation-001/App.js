@@ -1,18 +1,32 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { BottomTabBar, BottomTabView, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import source
-import { TabA } from './src/nav_tab/TabA';
+// import { Ionicons } from '@expo/vector-icons/Ionicons';
 
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+// import source
+import ScreenA from './src/nav_stack/ScreenA';
+import ScreenB from './src/nav_stack/ScreenB';
+import ScreenC from './src/nav_stack/ScreenC';
+import NestedStackNavigator from './src/nav_stack/NestedStackNavigator';
+import { TabA } from './src/nav_tab/TabA';
+import { TabB } from './src/nav_tab/TabB';
+import { createBottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
+import { BottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
+const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function APP() {
     return (
         <NavigationContainer>
+            {/* <Stack.Screen name="Tab" component={}></Stack.Screen>
+            <Stack.Screen name="Tab" component={}></Stack.Screen> */}
             <BottomTab.Navigator>
-                <BottomTab.Screen name={'TabA'} component={TabA}></BottomTab.Screen>
+                <Stack.Screen name={'NestedBottomTab'} component={BottomTabNavigation} />
+                <Stack.Screen name={'ScreenB'} component={ScreenB} />
             </BottomTab.Navigator>
         </NavigationContainer>
     );
@@ -39,6 +53,8 @@ export default function APP() {
 // import ScreenB from './src/nav_stack/ScreenB';
 // import ScreenC from './src/nav_stack/ScreenC';
 // import NestedStackNavigator from './src/nav_stack/NestedStackNavigator';
+
+// const BottomTab = createStackNavigator();
 
 // export default function App() {
 //     return (
