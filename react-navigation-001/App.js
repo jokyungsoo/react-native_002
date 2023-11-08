@@ -1,36 +1,62 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { Ionicons } from '@expo/vector-icons/Ionicons';
-
-import Ionicons from '@expo/vector-icons/Ionicons';
-
-// import source
-import ScreenA from './src/nav_stack/ScreenA';
-import ScreenB from './src/nav_stack/ScreenB';
-import ScreenC from './src/nav_stack/ScreenC';
-import NestedStackNavigator from './src/nav_stack/NestedStackNavigator';
-import { TabA } from './src/nav_tab/TabA';
-import { TabB } from './src/nav_tab/TabB';
-import { createBottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
-import { BottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
-const BottomTab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text } from 'react-native';
+import { Typography } from './src/Components.js/Typography';
 
 export default function APP() {
     return (
-        <NavigationContainer>
-            {/* <Stack.Screen name="Tab" component={}></Stack.Screen>
-            <Stack.Screen name="Tab" component={}></Stack.Screen> */}
-            <Stack.Navigator>
-                <Stack.Screen name={'NestedBottomTab'} component={BottomTabNavigation} />
-                <Stack.Screen name={'ScreenB'} component={ScreenB} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <View style={styles.main_view}>
+            <Typography color="red" fontSize={20}>
+                this
+                <Typography color="green" fontSize={20}>
+                    is
+                </Typography>
+                Text
+            </Typography>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    main_view: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+
+// import * as React from 'react';
+// import { View, Text } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// // import { Ionicons } from '@expo/vector-icons/Ionicons';
+
+// import Ionicons from '@expo/vector-icons/Ionicons';
+
+// // import source
+// import ScreenA from './src/nav_stack/ScreenA';
+// import ScreenB from './src/nav_stack/ScreenB';
+// import ScreenC from './src/nav_stack/ScreenC';
+// import NestedStackNavigator from './src/nav_stack/NestedStackNavigator';
+// import { TabA } from './src/nav_tab/TabA';
+// import { TabB } from './src/nav_tab/TabB';
+// import { createBottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
+// import { BottomTabNavigation } from './src/nav_tab/BottomTabNavigator';
+// const BottomTab = createBottomTabNavigator();
+// const Stack = createNativeStackNavigator();
+
+// export default function APP() {
+//     return (
+//         <NavigationContainer>
+//             {/* <Stack.Screen name="Tab" component={}></Stack.Screen>
+//             <Stack.Screen name="Tab" component={}></Stack.Screen> */}
+//             <Stack.Navigator>
+//                 <Stack.Screen name={'NestedBottomTab'} component={BottomTabNavigation} />
+//                 {/* <Stack.Screen name={'ScreenB'} component={ScreenB} /> */}
+//             </Stack.Navigator>
+//         </NavigationContainer>
+//     );
+// }
 
 //
 //
