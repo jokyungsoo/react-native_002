@@ -24,10 +24,10 @@ export default function APP() {
         <NavigationContainer>
             {/* <Stack.Screen name="Tab" component={}></Stack.Screen>
             <Stack.Screen name="Tab" component={}></Stack.Screen> */}
-            <BottomTab.Navigator>
+            <Stack.Navigator>
                 <Stack.Screen name={'NestedBottomTab'} component={BottomTabNavigation} />
                 <Stack.Screen name={'ScreenB'} component={ScreenB} />
-            </BottomTab.Navigator>
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }

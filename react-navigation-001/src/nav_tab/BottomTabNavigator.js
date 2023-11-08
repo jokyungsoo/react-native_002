@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import source
 import { TabA } from './TabA';
 import { TabB } from './TabB';
+
 import NestedStackNavigator from '../nav_stack/NestedStackNavigator';
 
 const BottomTab = createBottomTabNavigator();
@@ -17,14 +18,14 @@ export class BottomTabNavigation extends React.Component {
             <BottomTab.Navigator>
                 <BottomTab.Screen
                     name={'TabA'}
-                    component={NestedStackNavigator}
+                    component={TabA}
                     options={{
                         tabBarIcon: () => <Ionicons name="home" size={24} color="black" />,
                     }}
                 />
                 <BottomTab.Screen
                     name={'TabB'}
-                    component={TabB}
+                    component={NestedStackNavigator}
                     options={{
                         tabBarIcon: () => <Ionicons name="settings" size={20} />,
                     }}

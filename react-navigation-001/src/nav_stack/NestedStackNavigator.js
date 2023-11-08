@@ -11,7 +11,7 @@ class NestedStackNavigator extends React.Component {
         return (
             <Stack.Navigator>
                 <Stack.Screen name="ScreenA" component={ScreenA} />
-                <Stack.Screen name="ScreenB" component={ScreenB} />
+                {/* <Stack.Screen name="ScreenB" component={ScreenB} /> */}
                 <Stack.Screen name="ScreenC" component={ScreenC} />
             </Stack.Navigator>
         );
