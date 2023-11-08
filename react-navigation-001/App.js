@@ -1,20 +1,75 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text } from 'react-native';
 import { Typography } from './src/Components.js/Typography';
+import { LocalImage } from './src/Components.js/LocalImage';
+import { RemoteImage } from './src/Components.js/RemoteImage';
+import { Icons } from './src/Components.js/Icons';
+import { Badge } from './src/Components.js/Badge';
+import { Button } from './src/Components.js/Button';
+import { Division } from './src/Components.js/Division';
+import { Spacer } from './src/Components.js/Spacer';
 
 export default function APP() {
     return (
         <View style={styles.main_view}>
+            <Division />
+            <Spacer space={20} />
             <Typography color="red" fontSize={20}>
                 this
                 {/* 만약 잘못된 값이 들어온다면 */}
                 {/* type check
                      yarn add prop-types --save */}
-                <Typography color="green" fontSize={32}>
-                    is
-                </Typography>
                 Text
             </Typography>
+            <Spacer space={20} />
+            <Division />
+            <Spacer space={20} />
+            <View style={{ flexDirection: 'row' }}>
+                {/* 내부 이미지 */}
+                <LocalImage localAsset={require('./assets/favicon.png')} width={50} height={50} />
+                <Spacer space={20} />
+                {/* 외부 이미지 */}
+                <RemoteImage
+                    uri="https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors.jpg"
+                    width={50}
+                    height={50}
+                />
+                <Spacer space={20} />
+            </View>
+            <View>
+                {/* 아이콘 생성 */}
+                <Icons name="home" size={20} color="red" />
+                <Spacer space={20} />
+                {/* 텍스트에 뱃지 */}
+                <Badge fontsize={10}>
+                    <Typography>badge</Typography>
+                </Badge>
+                <Spacer space={20} />
+
+                {/* 아이콘에 벳지 */}
+                <Badge>
+                    <Icons name="home" size={40} color="black" />
+                </Badge>
+            </View>
+            <View style={{ margin: 20 }}>
+                {/* 버튼 */}
+                <Button
+                    onPress={() => {
+                        console.log("I'm Button");
+                    }}
+                >
+                    <Typography fontSize={32}>TEXT</Typography>
+                </Button>
+
+                {/*아이콘 버튼 */}
+                <Button
+                    onPress={() => {
+                        console.log("I'm Icon Button");
+                    }}
+                >
+                    <Icons name="home" size={50} color="green" />
+                </Button>
+            </View>
         </View>
     );
 }
