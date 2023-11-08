@@ -7,7 +7,10 @@ export default function APP() {
         <View style={styles.main_view}>
             <Typography color="red" fontSize={20}>
                 this
-                <Typography color="green" fontSize={20}>
+                {/* 만약 잘못된 값이 들어온다면 */}
+                {/* type check
+                     yarn add prop-types --save */}
+                <Typography color="green" fontSize={32}>
                     is
                 </Typography>
                 Text
