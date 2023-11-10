@@ -11,13 +11,13 @@ export default function APP() {
     return (
         <SafeAreaProvider>
             <View style={styles.main_view}>
-                {/* <HeaderWithoutComponents title="HEADER" /> */}
                 <Header>
-                    <Header.Button IconName="arrow-back"></Header.Button>
-                    <Header.Title Title="hello"></Header.Title>
+                    <Header.Group>
+                        <Header.Button IconName="arrow-back"></Header.Button>
+                        <Header.Title Title="hello"></Header.Title>
+                    </Header.Group>
+                    <Header.Button IconName="close"></Header.Button>
                 </Header>
-                {/* <TabIcons IconName="home" />
-                <TabIcons IconName="home" visibleBadge /> */}
             </View>
         </SafeAreaProvider>
     );
