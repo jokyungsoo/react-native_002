@@ -17,7 +17,7 @@ export const Typography = (props) => {
                 fontSize: props.fontSize,
             }}
         >
-            {props.childeren}
+            {props.children}
         </RNText>
     );
 };

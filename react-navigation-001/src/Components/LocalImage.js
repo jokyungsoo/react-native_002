@@ -2,12 +2,16 @@ import React from 'react';
 import { Image as RNImage } from 'react-native';
 import PropTypes from 'prop-types';
 
-export class LocalImage extends React.Component {
-    render() {
-        const { localAsset, style, width, height } = this.props;
-        return <RNImage source={localAsset} style={[style, { width, height }]} />;
-    }
-}
+// export class LocalImage extends React.Component {
+//     render() {
+//         const { localAsset, style, width, height } = this.props;
+//         return <RNImage source={localAsset} style={[style, { width, height }]} />;
+//     }
+// }
+
+export const LocalImage = (props) => {
+    return <RNImage source={props.LocalAsset} style={[props.style, { width: props.width, height: props.height }]} />;
+};
 
 // // 프로퍼티 타입 검사 추가 (예시)
 // LocalImage.propTypes = {
