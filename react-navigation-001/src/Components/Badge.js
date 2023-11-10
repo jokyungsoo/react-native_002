@@ -4,13 +4,13 @@ import { Typography } from './Typography';
 
 export class Badge extends React.Component {
     render() {
-        const { children, fontsize } = this.props;
+        const { children, fontSize } = this.props;
         return (
             <View>
                 <View>
                     {children}
                     <View style={styles.td_view}>
-                        <Typography fontsize={fontsize} color={'white'}>
+                        <Typography fontSize={fontSize} color={'white'}>
                             N
                         </Typography>
                     </View>

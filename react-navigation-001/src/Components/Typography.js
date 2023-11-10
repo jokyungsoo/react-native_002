@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 export class Typography extends React.Component {
     render() {
-        return (
-            <RNText style={{ color: this.props.color, fontSize: this.props.fontSize }}>{this.props.children}</RNText>
-        );
+        const { fontSize, color, children } = this.props;
+        return <RNText style={{ color: color, fontSize: fontSize }}>{children}</RNText>;
     }
 }
 
