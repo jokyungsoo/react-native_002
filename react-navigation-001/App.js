@@ -10,6 +10,7 @@ import { Typography } from './src/Components/Typography';
 import { LocalImage } from './src/Components/LocalImage';
 import { RemoteImage } from './src/Components/RemoteImage';
 import { Spacer } from './src/Components/Spacer';
+import { Division } from './src/Components/Division';
 
 export default function APP() {
     return (
@@ -28,7 +29,8 @@ export default function APP() {
 
                     <LocalImage LocalAsset={require('./assets/favicon.png')} width={100} height={100} />
                 </View>
-
+                <Spacer space={40} />
+                <Division />
                 <Spacer space={40} />
 
                 <RemoteImage
