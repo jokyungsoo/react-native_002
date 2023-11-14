@@ -1,16 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
+
+// import source file
 import { ImageListScreen } from './src/Components/Screen/Image_List_Screen';
 import { ImageDetailScreen } from './src/Components/Screen/Image_Detail_Screen';
 import { Image_Favor_List_Screen } from './src/Components/Screen/Image_Favor_List_Screen';
-
-// import source file
+import { BT_navigation } from './src/navigation/Bot_Tab_nav';
 
 export default function APP() {
     return (
         <NavigationContainer>
-            <ImageListScreen></ImageListScreen>
-            <ImageDetailScreen></ImageDetailScreen>
-            <Image_Favor_List_Screen></Image_Favor_List_Screen>
+            <BT_navigation></BT_navigation>
         </NavigationContainer>
     );
 }

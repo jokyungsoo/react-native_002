@@ -4,7 +4,7 @@ import { Typography } from '../Components_func/Typography';
 
 export const Image_Favor_List_Screen = (props) => {
     return (
-        <View>
+        <View style={styles.main_view}>
             <Typography fontSize={20}>This Favoriate Image List</Typography>
         </View>
     );
