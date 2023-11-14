@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../Components/Button';
-import { Icons } from '../Components/Icons';
+import { Button } from '../Components_func/Button';
+import { Icons } from '../Components_func/Icons';
 
 export class HeaderButton extends React.Component {
     render() {

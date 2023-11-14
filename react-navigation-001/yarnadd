@@ -1,0 +1,6 @@
+
+yarn add @react-navigation/native-stack --save
+
+yarn add @react-navigation/bottom-tabs --save
+
+yarn add @expo/vector-icons prop-types --save

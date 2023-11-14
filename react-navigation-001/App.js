@@ -1,57 +1,19 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import js file
-import { TabIcons } from './src/Components/TabIcons';
-import { HeaderWithoutComponents } from './src/Components/HeaderWithoutConpounds';
-import { Header } from './src/Header/Header';
-import { Typography } from './src/Components/Typography';
-import { LocalImage } from './src/Components/LocalImage';
-import { RemoteImage } from './src/Components/RemoteImage';
-import { Spacer } from './src/Components/Spacer';
-import { Division } from './src/Components/Division';
+import { NavigationContainer } from '@react-navigation/native';
+import { ImageListScreen } from './src/Components/Screen/Image_List_Screen';
+import { ImageDetailScreen } from './src/Components/Screen/Image_Detail_Screen';
+import { Image_Favor_List_Screen } from './src/Components/Screen/Image_Favor_List_Screen';
+
+// import source file
 
 export default function APP() {
     return (
-        <SafeAreaProvider>
-            <View style={styles.main_view}>
-                <Typography fontSize={18} color="black">
-                    hellow world
-                </Typography>
-
-                <Spacer space={40} />
-
-                <View style={{ flexDirection: 'row' }}>
-                    <LocalImage LocalAsset={require('./assets/favicon.png')} width={100} height={100} />
-
-                    <Spacer space={40} Horizontal={true} />
-
-                    <LocalImage LocalAsset={require('./assets/favicon.png')} width={100} height={100} />
-                </View>
-                <Spacer space={40} />
-                <Division />
-                <Spacer space={40} />
-
-                <RemoteImage
-                    uri={
-                        'https://www.thesprucepets.com/thmb/119OZpc3wPSzYk3bYhxP4Yer418=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/types-of-retrievers-2804738-hero-bae3573b5db347b5bf5979e0d131b6a4.jpg'
-                    }
-                    width={100}
-                    height={100}
-                />
-            </View>
-        </SafeAreaProvider>
+        <NavigationContainer>
+            <ImageListScreen></ImageListScreen>
+            <ImageDetailScreen></ImageDetailScreen>
+            <Image_Favor_List_Screen></Image_Favor_List_Screen>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    main_view: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 // import * as React from 'react';
 // import { View, Text } from 'react-native';
