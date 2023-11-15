@@ -5,6 +5,7 @@ import { Spacer } from '../Components_func/Spacer';
 import { HeaderTitle } from './HeaderTitle';
 import { HeaderButton } from './HeaderButton';
 import { HeaderGroup } from './HeaderGroup';
+import { HeaderIcon } from './HeaderIcon';
 
 // const { width } = Dimensions.get('window'); // 화면의 너비를 가져옴
 // export class Header extends React.Component {
@@ -71,3 +72,4 @@ export const Header = (props) => {
 Header.Title = HeaderTitle;
 Header.Button = HeaderButton;
 Header.Group = HeaderGroup;
+Header.Icons = HeaderIcon;

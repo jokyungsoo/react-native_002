@@ -1,0 +1,10 @@
+yarn add @react-navigation/native --save
+
+yarn add react-native-screens react-native-safe-area-context --save
+
+yarn add @react-navigation/native-stack --save
+
+yarn add @react-navigation/bottom-tabs --save
+
+yarn add @expo/vector-icons prop-types --save
+

@@ -38,7 +38,7 @@ export const TabIcons = (props) => {
     }
     return (
         <View>
-            <Icons name={IconName} size={20} color={'black'}></Icons>
+            <Icons name={props.IconName} size={20} color={props.IconColor}></Icons>
         </View>
     );
 };
