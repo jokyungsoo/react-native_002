@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, useWindowDimensions, ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system';
 
+import * as MediaLibrary from 'expo-media-library';
 //
 import { Typography } from '../Components_func/Typography';
 import { Button } from '../Components_func/Button';
@@ -15,13 +16,14 @@ export const ImageDetailScreen = (props) => {
     const navigation = useNavigation();
     const route = useRoute();
     const { width } = useWindowDimensions();
+    const [downloading, setDownloading] = React.useState(false);
 
     const onPressBack = useCallback(() => {
-        console.log('press back');
         navigation.goBack();
     }, []);
 
     const onPressDownload = useCallback(async () => {
+        setDownloading(true);
         const downloadResumable = FileSystem.createDownloadResumable(
             route.params.uri,
             `${FileSystem.documentDirectory}${new Date().getMilliseconds()}.jpg`
@@ -29,6 +31,29 @@ export const ImageDetailScreen = (props) => {
         try {
             const { uri } = await downloadResumable.downloadAsync();
             console.log('finish downloading to', uri);
+
+            const permissionResult = await MediaLibrary.getPermissionsAsync(true);
+            console.log('this is a ', permissionResult);
+            if (permissionResult.status === 'denied') {
+                //아예 못쓰는 상태
+                setDownloading(false);
+                return;
+            }
+
+            if (permissionResult.status === 'undetermined') {
+                const requestResult = await MediaLibrary.requestPermissionsAsync();
+                console.log(requestResult);
+                if (requestResult.status === 'denied') {
+                    setDownloading(false);
+                    return;
+                }
+            }
+
+            const asset = await MediaLibrary.createAssetAsync(uri);
+            const album = await MediaLibrary.createAlbumAsync('TestFolder', asset, false);
+            setDownloading(false);
+
+            console.log(album);
         } catch (ex) {}
     }, []);
 
@@ -52,20 +77,28 @@ export const ImageDetailScreen = (props) => {
                         backgroundColor: 'black',
                     }}
                 >
-                    <View
-                        style={{
-                            height: 52,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <Typography fontSize={20} color="white">
-                            Download
-                        </Typography>
-                        <Spacer space={5} Horizontal={true} />
-                        <Icons name="download" size={25} color="white" />
-                    </View>
+                    {downloading ? (
+                        <View
+                            style={{ height: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                            <ActivityIndicator />
+                        </View>
+                    ) : (
+                        <View
+                            style={{
+                                height: 52,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <Typography fontSize={20} color="white">
+                                Download
+                            </Typography>
+                            <Spacer space={5} Horizontal={true} />
+                            <Icons name="download" size={25} color="white" />
+                        </View>
+                    )}
                 </View>
             </Button>
         </View>
