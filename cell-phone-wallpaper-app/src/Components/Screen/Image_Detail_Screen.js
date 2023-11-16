@@ -27,7 +27,7 @@ export const ImageDetailScreen = (props) => {
             `${FileSystem.documentDirectory}${new Date().getMilliseconds()}.jpg`
         );
         try {
-            const { uri } = downloadResumable.downloadAsync();
+            const { uri } = await downloadResumable.downloadAsync();
             console.log('finish downloading to', uri);
         } catch (ex) {}
     }, []);
