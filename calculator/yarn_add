@@ -1,0 +1,21 @@
+#############################################################
+
+# https://docs.expo.dev/versions/latest/sdk/accelerometer
+
+#############################################################
+
+yarn add @react-navigation/native --save
+
+yarn add react-native-screens react-native-safe-area-context --save
+
+yarn add @react-navigation/native-stack --save
+
+yarn add @react-navigation/bottom-tabs --save
+
+yarn add @expo/vector-icons prop-types --save
+
+yarn add styled-scomponents
+
+npx expo install expo-file-system
+
+npx expo install expo-media-library

@@ -1,5 +1,8 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
+import styled from 'styled-components/native';
+
+import { useCalculator } from './useCalculator';
 
 const COLOR = {
     RESULT: '#4e4c51',
@@ -9,8 +12,7 @@ const COLOR = {
 };
 
 // Button type: 'reset' | 'operator' | 'num'
-
-const Button = ({ text, onPress, flex, type }) => {
+const Button = ({ text, onPress, flex, type, isSelected }) => {
     const backgroundColor =
         type === 'reset'
             ? COLOR.RESET
@@ -21,7 +23,7 @@ const Button = ({ text, onPress, flex, type }) => {
             : type === 'result'
             ? COLOR.RESULT
             : 'transparent';
-    const textStyle = type === 'result' ? { fontSize: 30, color: 'white' } : { fontSize: 25, color: 'white' };
+
     return (
         <TouchableOpacity
             onPress={onPress}
@@ -30,55 +32,132 @@ const Button = ({ text, onPress, flex, type }) => {
                 backgroundColor,
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: type === 'result' ? 80 : 55,
-                borderWidth: 0.2,
+                height: 50,
+                borderWidth: isSelected ? 1 : 0.2,
                 borderColor: 'black',
                 // paddingVertical: 15,
             }}
-            s
         >
-            <Text style={textStyle}>{text}</Text>
+            <Text style={{ color: 'white', fontSize: 25 }}>{text}</Text>
         </TouchableOpacity>
     );
 };
 
+const ButtonContainer = styled.View`
+    flex-direction: row;
+    width: 100%;
+`;
+
+const ResultContainer = styled.View`
+    background-color: ${COLOR.RESULT};
+    min-height: 60px;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px 5px;
+`;
+// padding: 5px 10px; (top,Bottom) , (Right,left)
+// padding: 5px 10px 10px 10px; // top right bttom left
+
 export default () => {
+    const {
+        input,
+        currentOperator,
+        result,
+        tempInput,
+        tempOperator,
+        isClickedOperator,
+        hasInput,
+        onPressNum,
+        onPressOperator,
+        onPressReset,
+    } = useCalculator();
+
     return (
-        <View style={{ flex: 1, width: 200 }}>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Text type="result" text="0" onPress={() => null} flex={1} />
-            </View>
+        <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
+            {/* result */}
+            <Text>Input: {input}</Text>
+            <Text>Current Operator: {currentOperator}</Text>
+            <Text>Result: {result}</Text>
+            <Text>Temp Input: {tempInput}</Text>
+            <Text>Temp Operator: {tempOperator}</Text>
 
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Button type="reset" text="AC" onPress={() => null} flex={1} />
-                <Button type="reset" text="+/-" onPress={() => null} flex={1} />
-                <Button type="reset" text="%" onPress={() => null} flex={1} />
-                <Button type="operator" text="/" onPress={() => null} flex={1} />
-            </View>
+            <ResultContainer>
+                <Text style={{ color: 'white', fontSize: 35, textAlign: 'right' }}>{input}</Text>
+            </ResultContainer>
+            {/* ac,+/- */}
+            <ButtonContainer>
+                <Button
+                    type="reset"
+                    text={hasInput ? 'C' : 'AC'}
+                    onPress={onPressReset}
+                    // onPress={onPressReset}
+                    flex={3}
+                />
 
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Button type="num" text="7" onPress={() => null} flex={1} />
-                <Button type="num" text="8" onPress={() => null} flex={1} />
-                <Button type="num" text="9" onPress={() => null} flex={1} />
-                <Button type="operator" text="X" onPress={() => null} flex={1} />
-            </View>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Button type="num" text="4" onPress={() => null} flex={1} />
-                <Button type="num" text="5" onPress={() => null} flex={1} />
-                <Button type="num" text="6" onPress={() => null} flex={1} />
-                <Button type="operator" text="-" onPress={() => null} flex={1} />
-            </View>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Button type="num" text="1" onPress={() => null} flex={1} />
-                <Button type="num" text="2" onPress={() => null} flex={1} />
-                <Button type="num" text="3" onPress={() => null} flex={1} />
-                <Button type="operator" text="+" onPress={() => null} flex={1} />
-            </View>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-                <Button type="num" text="0" onPress={() => null} flex={2} />
-                <Button type="num" text="." onPress={() => null} flex={1} />
-                <Button type="operator" text="=" onPress={() => null} flex={1} />
-            </View>
+                <Button
+                    type="operator"
+                    text="/"
+                    onPress={() => onPressOperator('/')}
+                    flex={1}
+                    isSelected={currentOperator === '/'}
+                />
+            </ButtonContainer>
+            {/* 7~X */}
+            <ButtonContainer>
+                {[7, 8, 9].map((num) => (
+                    <Button
+                        key={`num-${num}`}
+                        type="num"
+                        text={`${num}`}
+                        // text={String(num)}
+                        onPress={() => onPressNum(num)}
+                        flex={1}
+                    />
+                ))}
+
+                <Button
+                    type="operator"
+                    text="*"
+                    onPress={() => onPressOperator('*')}
+                    flex={1}
+                    isSelected={currentOperator === '*'}
+                />
+            </ButtonContainer>
+
+            {/* 4 ~ - */}
+            <ButtonContainer>
+                {[4, 5, 6].map((num) => (
+                    <Button key={`num-${num}`} type="num" text={`${num}`} onPress={() => onPressNum(num)} flex={1} />
+                ))}
+
+                <Button
+                    type="operator"
+                    text="-"
+                    onPress={() => onPressOperator('-')}
+                    flex={1}
+                    isSelected={currentOperator === '-'}
+                />
+            </ButtonContainer>
+            {/* 1 ~ + */}
+            <ButtonContainer>
+                {[1, 2, 3].map((num) => (
+                    <Button key={`num-${num}`} type="num" text={`${num}`} onPress={() => onPressNum(num)} flex={1} />
+                ))}
+
+                <Button
+                    type="operator"
+                    text="+"
+                    onPress={() => onPressOperator('+')}
+                    flex={1}
+                    isSelected={currentOperator === '+'}
+                />
+            </ButtonContainer>
+            {/* 0 ~ = */}
+            <ButtonContainer>
+                <Button type="num" text="0" onPress={() => onPressNum(0)} flex={3} />
+
+                <Button type="operator" text="=" onPress={() => onPressOperator('=')} flex={1} />
+            </ButtonContainer>
             {/* [4 ~ -] */}
 
             {/* [1 ~ +] */}
